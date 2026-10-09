@@ -143,7 +143,12 @@ void CompileShaders()
         return;
     }
 
-    glValidateProgram(shader);
+    // validation checks the program against the current GL state,
+    // macOS core profile requires a VAO to be bound, otherwise it fails with "No vertex array object bound"
+    glBindVertexArray(VAO);
+        glValidateProgram(shader);
+    glBindVertexArray(0);
+
     glGetProgramiv(shader, GL_VALIDATE_STATUS, &result);
     if (!result)
     {

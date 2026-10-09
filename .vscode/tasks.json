@@ -1,0 +1,78 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "make: 編譯",
+            "type": "shell",
+            "command": "make",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": {
+                "base": "$gcc",
+                "fileLocation": [
+                    "relative",
+                    "${fileDirname}"
+                ]
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "make: 編譯並執行",
+            "type": "shell",
+            "command": "make run",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": {
+                "base": "$gcc",
+                "fileLocation": [
+                    "relative",
+                    "${fileDirname}"
+                ]
+            },
+            "group": "build"
+        },
+        {
+            "label": "make: 清除",
+            "type": "shell",
+            "command": "make clean",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "type": "cppbuild",
+            "label": "C/C++: clang++ 建置使用中檔案",
+            "command": "/usr/bin/clang++",
+            "args": [
+                "-std=c++17",
+                "-fcolor-diagnostics",
+                "-fansi-escape-codes",
+                "-g",
+                "-DGL_SILENCE_DEPRECATION",
+                "-I/opt/homebrew/include",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}",
+                "-L/opt/homebrew/lib",
+                "-lglfw",
+                "-lGLEW",
+                "-framework",
+                "OpenGL"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build",
+            "detail": "偵錯工具產生的工作。"
+        }
+    ]
+}
